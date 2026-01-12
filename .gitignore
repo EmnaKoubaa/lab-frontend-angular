@@ -40,3 +40,29 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment files (local secrets)
+.env
+.env.*
+/src/app/environement.ts
+
+# Additional logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Cache and temp
+.cache/
+.cache-loader/
+.tmp/
+.temp/
+
+# Visual Studio / Windows
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
