@@ -1,0 +1,137 @@
+<h2 mat-dialog-title>Fiche membre</h2>
+<mat-dialog-content class="detail-content">
+  <mat-card class="detail-card">
+    <mat-card-content>
+      <div class="row"><strong>ID:</strong> {{ member.id }}</div>
+      <div class="row"><strong>CIN:</strong> {{ member.cin }}</div>
+      <div class="row"><strong>Nom:</strong> {{ member.nom }} {{ member.prenom }}</div>
+      <div class="row"><strong>Date de naissance:</strong> {{ member.dateNaissance }}</div>
+      <div class="row"><strong>Email:</strong> {{ member.email }}</div>
+      <div class="row"><strong>Type:</strong> {{ isTeacher() ? 'Enseignant' : 'Étudiant' }}</div>
+      <div class="row" *ngIf="member.cv"><strong>CV:</strong> <a [href]="member.cv" target="_blank">Voir CV</a></div>
+      <div class="row" *ngIf="member.photo"><strong>Photo:</strong><br/><img [src]="member.photo" alt="photo" class="detail-photo"/></div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Publications / Events / Outils -->
+      <div class="member-resources">
+        <h3>Ressources</h3>
+
+        <div *ngIf="fullLoading">Chargement des publications, événements et outils...</div>
+
+        <!-- Publications -->
+        <div>
+          <h4>Publications</h4>
+          <div *ngIf="!(member.pubs) || member.pubs.length === 0">Aucune publication</div>
+          <mat-list *ngIf="member.pubs && member.pubs.length">
+            <mat-list-item *ngFor="let p of member.pubs">
+              <div class="resource-item">
+                <div class="res-line"><strong>ID:</strong> {{ p.id }}</div>
+                <div class="res-line"><strong>Type:</strong> {{ p.type }}</div>
+                <div class="res-title"><strong>Titre:</strong> {{ p.titre }}</div>
+                <div class="res-line"><strong>Date:</strong> {{ p.date | date:'yyyy-MM-dd HH:mm' }}</div>
+                <div class="res-line" *ngIf="p.lien"><strong>Lien:</strong> <a [href]="p.lien" target="_blank">{{ p.lien }}</a></div>
+                <div class="res-line" *ngIf="p.sourcePdf || p.sourcepdf"><strong>Fichier PDF:</strong> <a [href]="p.sourcePdf || p.sourcepdf" target="_blank">Voir PDF</a></div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h4>Événements</h4>
+          <div *ngIf="!(member.evts) || member.evts.length === 0">Aucun événement</div>
+          <mat-list *ngIf="member.evts && member.evts.length">
+            <mat-list-item *ngFor="let e of member.evts">
+              <div class="resource-item">
+                <div class="res-line"><strong>ID:</strong> {{ e.id }}</div>
+                <div class="res-title"><strong>Titre:</strong> {{ e.titre }}</div>
+                <div class="res-line"><strong>Date début:</strong> {{ (e.dateDeb || e.date) | date:'yyyy-MM-dd' }}</div>
+                <div class="res-line" *ngIf="e.dateFin"><strong>Date fin:</strong> {{ e.dateFin | date:'yyyy-MM-dd' }}</div>
+                <div class="res-line"><strong>Lieu:</strong> {{ e.lieu }}</div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <!-- Outils -->
+        <div>
+          <h4>Outils</h4>
+          <div *ngIf="!(member.outils) || member.outils.length === 0">Aucun outil</div>
+          <mat-list *ngIf="member.outils && member.outils.length">
+            <mat-list-item *ngFor="let o of member.outils">
+              <div class="resource-item">
+                <div class="res-line"><strong>ID:</strong> {{ o.id }}</div>
+                <div class="res-line"><strong>Date:</strong> {{ o.date | date:'yyyy-MM-dd' }}</div>
+                <div class="res-title"><strong>Source:</strong> {{ o.source }}</div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+      </div>
+
+      <div *ngIf="isTeacher()">
+        <h3>Infos Enseignant</h3>
+        <div class="row"><strong>Grade:</strong> {{ member.grade }}</div>
+        <div class="row"><strong>Etablissement:</strong> {{ member.etablissement }}</div>
+
+        <h4>Étudiants encadrés</h4>
+        <button mat-raised-button color="primary" (click)="toggleAddStudent()">
+          <mat-icon>person_add</mat-icon>
+          Ajouter un étudiant pour encadrer
+        </button>
+
+        <div class="add-section" *ngIf="showAddSection">
+          <mat-form-field appearance="outline">
+            <mat-label>Choisir un étudiant</mat-label>
+            <mat-select [(value)]="selectedStudentId">
+              <mat-option *ngFor="let a of availableStudents" [value]="a.id.toString()">{{ a.nom }} {{ a.prenom }} (CIN: {{ a.cin }})</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button color="primary" (click)="assignSelectedStudent()" [disabled]="!selectedStudentId">Ajouter</button>
+          <button mat-button (click)="toggleAddStudent()">Annuler</button>
+          <div *ngIf="loadingAvailable">Chargement...</div>
+          <div *ngIf="!loadingAvailable && availableStudents.length === 0">Aucun étudiant disponible</div>
+        </div>
+
+        <mat-list *ngIf="students && students.length; else noStudents">
+          <mat-list-item *ngFor="let s of students">
+            <span class="student-label">{{ s.nom }} {{ s.prenom }} (CIN: {{ s.cin }})</span>
+            <button mat-icon-button color="warn" matTooltip="Retirer" (click)="removeStudent(s.id)">
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <ng-template #noStudents>
+          <div>Aucun étudiant encadré</div>
+        </ng-template>
+      </div>
+
+      <div *ngIf="isStudent()">
+        <h3>Infos Étudiant</h3>
+        <div class="row"><strong>Date d'inscription:</strong> {{ member.dateInscription }}</div>
+        <div class="row"><strong>Diplôme:</strong> {{ member.diplome }}</div>
+        <div class="row"><strong>Sujet:</strong> {{ member.sujet }}</div>
+
+        <h4>Encadrant</h4>
+        <div *ngIf="member.encadrant; else noEncadrant">
+          <div *ngIf="!encadrantLoading && (member.encadrant.nom || member.encadrant.prenom); else encLoading">
+            <div>{{ member.encadrant.nom }} {{ member.encadrant.prenom }} (CIN: {{ member.encadrant.cin }})</div>
+          </div>
+          <ng-template #encLoading>
+            <div *ngIf="encadrantLoading">Chargement de l'encadrant...</div>
+            <div *ngIf="!encadrantLoading">Encadrant inconnu</div>
+          </ng-template>
+        </div>
+        <ng-template #noEncadrant>
+          <div>Aucun encadrant</div>
+        </ng-template>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Fermer</button>
+</mat-dialog-actions>

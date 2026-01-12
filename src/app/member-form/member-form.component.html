@@ -1,0 +1,139 @@
+<div class="form-container">
+  <div class="form-header">
+    <h2 class="form-title">{{ form.get('cin')?.value ? 'Modifier un membre' : 'Ajouter un membre' }}</h2>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="sub()" class="member-form">
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>CIN</mat-label>
+      <input matInput placeholder="Entrez le CIN" formControlName="cin">
+      <mat-icon matPrefix>credit_card</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Entrez le nom" formControlName="nom">
+      <mat-icon matPrefix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Prénom</mat-label>
+      <input matInput placeholder="Entrez le prénom" formControlName="prenom">
+      <mat-icon matPrefix>person_outline</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateNaissance">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <!--<div class="form-field file-field">
+      <label class="file-label">Photo</label>
+      <input type="file" accept="image/*" (change)="onPhotoSelected($event)" />
+      <div class="file-preview" *ngIf="photoPreview">
+        <img [src]="photoPreview" alt="Aperçu photo" />
+      </div>
+      <div class="file-hint" *ngIf="!photoPreview">Aucun fichier sélectionné</div>
+    </div>-->
+
+    <div class="form-field file-field">
+      <label class="file-label">CV (PDF)</label>
+      <input type="file" accept="application/pdf" (change)="onCvSelected($event)" />
+      <div class="file-hint" *ngIf="cvFileName">Fichier: {{ cvFileName }}</div>
+      <div class="file-hint" *ngIf="!cvFileName">Aucun fichier sélectionné</div>
+    </div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Email invalide
+      </mat-error>
+    </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="enseignant">Enseignant</mat-option>
+        <mat-option value="etudiant">Étudiant</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Etudiant fields -->
+    <div *ngIf="isStudent()">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date d'inscription</mat-label>
+        <input matInput [matDatepicker]="insPicker" formControlName="dateInscription">
+        <mat-datepicker-toggle matSuffix [for]="insPicker"></mat-datepicker-toggle>
+        <mat-datepicker #insPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Diplôme</mat-label>
+        <input matInput placeholder="Entrez le diplôme" formControlName="diplome">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Encadrant (optionnel)</mat-label>
+        <mat-select formControlName="encadrantId">
+          <mat-option [value]="null">-- Aucun --</mat-option>
+          <mat-option *ngFor="let t of teachers" [value]="t.id">{{ t.nom }} {{ t.prenom }} ({{ t.cin }})</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Enseignant fields -->
+    <div *ngIf="form.get('type')?.value === 'enseignant'">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Grade</mat-label>
+        <input matInput placeholder="Entrez le grade" formControlName="grade">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Etablissement</mat-label>
+        <input matInput placeholder="Entrez l'établissement" formControlName="etablissement">
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form-actions">
+      <button 
+        mat-raised-button 
+        type="button" 
+        class="cancel-btn"
+        routerLink="/members">
+        <mat-icon>close</mat-icon>
+          Annuler
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        class="submit-btn"
+        [disabled]="photoProcessing || form.invalid">
+        <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+        {{ isEditMode ? 'Enregistrer' : 'Créer' }}
+        <mat-progress-spinner *ngIf="photoProcessing" diameter="18" mode="indeterminate"></mat-progress-spinner>
+      </button>
+    </div>
+
+
+  </form>
+</div>

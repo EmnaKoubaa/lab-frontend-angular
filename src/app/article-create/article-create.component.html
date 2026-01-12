@@ -1,0 +1,70 @@
+<div class="dialog-container">
+  <!-- Header du Dialog -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">
+      <mat-icon class="title-icon">article</mat-icon>
+      {{ form.get('titre')?.value ? 'Modifier un article' : 'Ajouter un article' }}
+    </h2>
+  </div>
+
+  <!-- Contenu du formulaire -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="form" class="article-form">
+      
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Type</mat-label>
+        <input matInput placeholder="Entrez le type d'article" formControlName="type">
+        <mat-icon matPrefix>category</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Titre</mat-label>
+        <input matInput placeholder="Entrez le titre de l'article" formControlName="titre">
+        <mat-icon matPrefix>title</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Lien</mat-label>
+        <input matInput placeholder="Entrez le lien de l'article" formControlName="lien" type="url">
+        <mat-icon matPrefix>link</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field pdf-field">
+        <mat-label>Source PDF</mat-label>
+        <input matInput placeholder="Entrez la source PDF" formControlName="sourcePdf">
+        <mat-icon matPrefix>picture_as_pdf</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Membres (auteurs) *</mat-label>
+        <mat-select formControlName="membres" multiple [compareWith]="compareMember">
+          <mat-option *ngFor="let m of members" [value]="m.id">{{ m.nom }} {{ m.prenom }} ({{ m.cin }})</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="form.get('membres')?.invalid">Veuillez choisir au moins un membre</mat-hint>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <!-- Actions du Dialog -->
+  <mat-dialog-actions class="dialog-actions">
+    <button 
+      mat-raised-button 
+      type="button" 
+      class="cancel-btn"
+      (click)="close()">
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="button" 
+      class="submit-btn"
+      (click)="save()"
+      [disabled]="form?.invalid">
+      <mat-icon>{{ form.get('titre')?.value ? 'save' : 'add' }}</mat-icon>
+      {{ form.get('titre')?.value ? 'Enregistrer' : 'Créer' }}
+    </button>
+  </mat-dialog-actions>
+</div>

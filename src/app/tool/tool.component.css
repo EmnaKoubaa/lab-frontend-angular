@@ -1,0 +1,208 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 28px;
+  color: #1e3a8a;
+}
+
+.create-btn {
+  cursor: pointer;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.create-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+.create-btn mat-icon {
+  margin-right: 8px;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+/* ===== FILTRE ===== */
+.filter-field {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+}
+
+/* Centrer et aligner verticalement toutes les colonnes */
+th[mat-header-cell],
+td[mat-cell] {
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding: 16px !important;
+  font-size: 15px;
+}
+
+th[mat-header-cell] {
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #f1f5ff;
+  color: #1e3a8a;
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+/* Forcer l'alignement du contenu de tri Material */
+th[mat-header-cell] .mat-sort-header-container {
+  justify-content: center !important;
+}
+
+th[mat-header-cell] .mat-sort-header-content {
+  text-align: center !important;
+}
+
+/* Hover sur les lignes */
+tr[mat-row]:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+/* ===== ACTIONS ===== */
+.actions-cell {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px;
+}
+
+/* En-tête Actions centré */
+th[mat-header-cell].mat-column-actions {
+  text-align: center !important;
+}
+
+th[mat-header-cell].mat-column-actions .mat-sort-header-container {
+  justify-content: center !important;
+}
+
+.action-btn {
+  cursor: pointer;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.action-btn mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+/* Bouton Modifier */
+.action-btn[color="primary"] {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.action-btn[color="primary"]:hover {
+  background-color: rgba(33, 150, 243, 0.2);
+  transform: scale(1.1);
+}
+
+/* Bouton Supprimer */
+.action-btn[color="warn"] {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.action-btn[color="warn"]:hover {
+  background-color: rgba(244, 67, 54, 0.2);
+  transform: scale(1.1);
+}
+
+/* Curseur main au survol des boutons */
+.create-btn:hover,
+.action-btn:hover {
+  cursor: pointer !important;
+}
+
+/* ===== PAGINATOR ===== */
+mat-paginator {
+  border-top: 1px solid #e0e0e0;
+}
+
+/* ===== NO DATA ===== */
+.no-data {
+  text-align: center;
+  font-style: italic;
+  font-size: 15px;
+  color: #6b7280;
+  padding: 24px;
+}
+
+/* ===== FORCER L'ALIGNEMENT GLOBAL ===== */
+::ng-deep .mat-sort-header-container {
+  justify-content: center !important;
+  display: flex !important;
+}
+
+::ng-deep .mat-header-cell {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+::ng-deep .mat-cell {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+/* Cellule lien */
+.lien-cell {
+  padding: 8px 12px;
+}
+
+.lien-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #3f51b5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lien-link:hover {
+  color: #303f9f;
+  text-decoration: underline;
+}
+
+.link-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.no-link {
+  color: #9e9e9e;
+}

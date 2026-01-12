@@ -1,0 +1,202 @@
+:host {
+  display: block;
+  padding: 24px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+}
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.12);
+  overflow: hidden;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== HEADER DU FORMULAIRE ===== */
+.form-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  padding: 32px 40px;
+  text-align: center;
+}
+
+.form-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== FORMULAIRE ===== */
+.member-form {
+  padding: 40px;
+}
+
+/* ===== CHAMPS DE FORMULAIRE ===== */
+.form-field {
+  width: 100%;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+::ng-deep .form-field .mat-form-field-wrapper {
+  padding-bottom: 16px;
+}
+
+::ng-deep .form-field .mat-form-field-outline {
+  color: #d1d5db;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .form-field:hover .mat-form-field-outline {
+  color: #9ca3af;
+}
+
+::ng-deep .form-field.mat-focused .mat-form-field-outline {
+  color: #1e3a8a !important;
+}
+
+::ng-deep .form-field .mat-form-field-label {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+::ng-deep .form-field.mat-focused .mat-form-field-label {
+  color: #1e3a8a !important;
+}
+
+::ng-deep .form-field input {
+  font-size: 15px;
+  color: #1f2937;
+  padding: 12px 0;
+}
+
+/* Icônes préfixes */
+::ng-deep .form-field .mat-icon {
+  color: #6b7280;
+  margin-right: 12px;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+::ng-deep .form-field.mat-focused .mat-icon {
+  color: #1e3a8a;
+}
+
+/* ===== BOUTONS D'ACTION ===== */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.cancel-btn,
+.submit-btn {
+  cursor: pointer;
+  padding: 14px 32px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.cancel-btn {
+  background-color: #f3f4f6 !important;
+  color: #6b7280 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+.cancel-btn:hover {
+  background-color: #e5e7eb !important;
+  color: #374151 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.submit-btn {
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25) !important;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.35) !important;
+}
+
+.cancel-btn mat-icon,
+.submit-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  :host {
+    padding: 16px;
+  }
+
+  .form-container {
+    border-radius: 12px;
+  }
+
+  .form-header {
+    padding: 24px 20px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+
+  .member-form {
+    padding: 24px 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+    justify-content: center !important;
+  }
+}
+
+/* ===== EFFET FOCUS SUR FORMULAIRE ===== */
+::ng-deep .form-field.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #1e3a8a !important;
+  border-width: 2px !important;
+}
+
+::ng-deep .form-field.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  transition: all 0.3s ease;
+}
+
+/* ===== CURSEUR POINTER ===== */
+.cancel-btn:hover,
+.submit-btn:hover {
+  cursor: pointer !important;
+}

@@ -1,0 +1,94 @@
+<div class="page-header">
+  <h2 class="page-title">Événements</h2>
+  <button
+    mat-raised-button
+    color="primary"
+    class="create-btn"
+    (click)="open()">
+    <mat-icon>add</mat-icon>
+    Créer
+  </button>
+</div>
+
+<mat-form-field class="filter-field" appearance="outline">
+  <mat-label>Filtrer</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Rechercher un événement"
+    #input />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="table-wrapper mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <!-- Titre Column -->
+    <ng-container matColumnDef="Titre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
+      <td mat-cell *matCellDef="let row">{{ row.titre }}</td>
+    </ng-container>
+
+    <!-- Date Début Column -->
+    <ng-container matColumnDef="DateDeb">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Début</th>
+      <td mat-cell *matCellDef="let row">{{ row.dateDeb }}</td>
+    </ng-container>
+
+    <!-- Date Fin Column -->
+    <ng-container matColumnDef="DateFin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
+      <td mat-cell *matCellDef="let row">{{ row.dateFin }}</td>
+    </ng-container>
+
+    <!-- Lieu Column -->
+    <ng-container matColumnDef="Lieu">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lieu</th>
+      <td mat-cell *matCellDef="let row">{{ row.lieu }}</td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element" class="actions-cell">
+        <button
+          mat-icon-button
+          color="primary"
+          class="action-btn"
+          (click)="openEdit(element.id)"
+          matTooltip="Modifier">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          class="action-btn"
+          (click)="delete(element.id)"
+          matTooltip="Supprimer">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell no-data" colspan="6">
+        Aucun résultat pour « {{ input.value }} »
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Pagination événements">
+  </mat-paginator>
+</div>

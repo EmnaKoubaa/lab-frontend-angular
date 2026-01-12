@@ -1,0 +1,45 @@
+<div class="dialog-container">
+
+  <!-- ===== HEADER ===== -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">
+      <mat-icon class="title-icon">warning</mat-icon>
+      Confirmation
+    </h2>
+  </div>
+
+  <!-- ===== CONTENU ===== -->
+  <mat-dialog-content class="dialog-content">
+    <p class="confirm-text" *ngIf="!data?.message">
+      Êtes-vous sûr de vouloir supprimer cet élément ?
+      <br />
+      <span class="warning-text">Cette action est irréversible.</span>
+    </p>
+    <p class="confirm-text" *ngIf="data?.message">
+      {{ data.message }}
+    </p>
+  </mat-dialog-content>
+
+  <!-- ===== ACTIONS ===== -->
+  <mat-dialog-actions class="dialog-actions">
+    <button
+      mat-stroked-button
+      class="cancel-btn"
+      mat-dialog-close
+    >
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+
+    <button
+      mat-flat-button
+      color="warn"
+      class="submit-btn"
+      [mat-dialog-close]="true"
+    >
+      <mat-icon>delete</mat-icon>
+      Supprimer
+    </button>
+  </mat-dialog-actions>
+
+</div>

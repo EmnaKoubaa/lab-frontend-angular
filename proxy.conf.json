@@ -1,0 +1,26 @@
+{
+  "/MEMBRE-SERVICE": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/OUTIL-SERVICE": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/EVENEMENT-SERVICE": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/PUBLICATION-SERVICE": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

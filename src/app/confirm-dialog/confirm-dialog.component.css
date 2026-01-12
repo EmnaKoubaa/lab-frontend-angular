@@ -1,0 +1,109 @@
+/* ===== CONTENEUR PRINCIPAL DU DIALOG ===== */
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ===== HEADER DU DIALOG ===== */
+.dialog-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dialog-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
+}
+
+/* ===== CONTENU ===== */
+.dialog-content {
+  padding: 32px !important;
+  text-align: center;
+}
+
+.confirm-text {
+  font-size: 16px;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.warning-text {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* ===== ACTIONS ===== */
+.dialog-actions {
+  padding: 24px 32px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 16px !important;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 12px 26px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  min-width: 120px;
+  justify-content: center;
+}
+
+/* Bouton Annuler */
+.cancel-btn {
+  background-color: #f3f4f6 !important;
+  color: #6b7280 !important;
+}
+
+.cancel-btn:hover {
+  background-color: #e5e7eb !important;
+  transform: translateY(-2px);
+}
+
+/* Bouton Supprimer */
+.submit-btn {
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* ===== DIALOG MATERIAL ===== */
+::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}

@@ -1,0 +1,80 @@
+<div class="page-header">
+  <h2 class="page-title">Outils</h2>
+  <button
+    mat-raised-button
+    color="primary"
+    class="create-btn"
+    (click)="openCreate()">
+    <mat-icon>add</mat-icon>
+    Créer
+  </button>
+</div>
+
+<mat-form-field class="filter-field" appearance="outline">
+  <mat-label>Filtrer</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Rechercher un outil"
+    #input />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="table-wrapper mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <!-- Date -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+    </ng-container>
+
+    <!-- Source -->
+    <ng-container matColumnDef="source">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Source</th>
+      <td mat-cell *matCellDef="let row">{{ row.source }}</td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element" class="actions-cell">
+        <button
+          mat-icon-button
+          color="primary"
+          class="action-btn"
+          (click)="openEdit(element.id)"
+          matTooltip="Modifier">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          class="action-btn"
+          (click)="delete(element.id)"
+          matTooltip="Supprimer">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell no-data" colspan="4">
+        Aucun résultat pour « {{ input.value }} »
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Pagination outils">
+  </mat-paginator>
+</div>

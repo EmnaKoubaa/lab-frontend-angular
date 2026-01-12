@@ -1,0 +1,69 @@
+<div class="dialog-container">
+  <!-- Header du Dialog -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">
+      <mat-icon class="title-icon">event</mat-icon>
+      {{ form.get('titre')?.value ? 'Modifier un événement' : 'Ajouter un événement' }}
+    </h2>
+  </div>
+
+  <!-- Contenu du formulaire -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="form" class="event-form">
+      
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Titre</mat-label>
+        <input matInput placeholder="Entrez le titre de l'événement" formControlName="titre">
+        <mat-icon matPrefix>title</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field date-range-field">
+        <mat-label>Période de l'événement</mat-label>
+        <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+          <input matStartDate formControlName="dateDeb" placeholder="Date de début">
+          <input matEndDate formControlName="dateFin" placeholder="Date de fin">
+        </mat-date-range-input>
+        <mat-icon matPrefix>date_range</mat-icon>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-hint>JJ/MM/AAAA – JJ/MM/AAAA</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Lieu</mat-label>
+        <input matInput placeholder="Entrez le lieu de l'événement" formControlName="lieu">
+        <mat-icon matPrefix>place</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Membres (participants/auteurs) *</mat-label>
+        <mat-select formControlName="membres" multiple [compareWith]="compareMember">
+          <mat-option *ngFor="let m of members" [value]="m.id">{{ m.nom }} {{ m.prenom }} ({{ m.cin }})</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="form.get('membres')?.invalid">Veuillez choisir au moins un membre</mat-hint>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <!-- Actions du Dialog -->
+  <mat-dialog-actions class="dialog-actions">
+    <button 
+      mat-raised-button 
+      type="button" 
+      class="cancel-btn"
+      (click)="close()">
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="button" 
+      class="submit-btn"
+      (click)="save()">
+      <mat-icon>{{ form.get('titre')?.value ? 'save' : 'add' }}</mat-icon>
+      {{ form.get('titre')?.value ? 'Enregistrer' : 'Créer' }}
+    </button>
+  </mat-dialog-actions>
+</div>

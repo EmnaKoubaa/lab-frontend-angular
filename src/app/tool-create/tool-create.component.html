@@ -1,0 +1,50 @@
+<div class="dialog-container">
+  <!-- Header du Dialog -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">
+      <mat-icon class="title-icon">build</mat-icon>
+      {{ form.get('source')?.value ? 'Modifier un outil' : 'Ajouter un outil' }}
+    </h2>
+  </div>
+
+  <!-- Contenu du formulaire -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="form" class="tool-form">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Source</mat-label>
+        <input matInput placeholder="Entrez la source" formControlName="source">
+        <mat-icon matPrefix>source</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Membres (auteurs/participants) *</mat-label>
+        <mat-select formControlName="membres" multiple [compareWith]="compareMember">
+          <mat-option *ngFor="let m of members" [value]="m.id">{{ m.nom }} {{ m.prenom }} ({{ m.cin }})</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="form.get('membres')?.invalid">Veuillez choisir au moins un membre</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Actions du Dialog -->
+  <mat-dialog-actions class="dialog-actions">
+    <button 
+      mat-raised-button 
+      type="button" 
+      class="cancel-btn"
+      (click)="close()">
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="button" 
+      class="submit-btn"
+      (click)="save()"
+      [disabled]="form?.invalid">
+      <mat-icon>save</mat-icon>
+      Enregistrer
+    </button>
+  </mat-dialog-actions>
+</div>

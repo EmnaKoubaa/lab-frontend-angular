@@ -1,0 +1,79 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fb;
+}
+
+.login-header {
+  margin-bottom: 24px;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background-color: #3f51b5; /* même bleu que ton header */
+  border-radius: 999px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 360px;
+  padding: 24px 32px 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  align-items: center;
+}
+mat-form-field {
+  width: 100%;           /* inputs bien alignés */
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 8px;
+  background-color: #3f51b5; /* vert */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #007179;
+}
+
+
+.login-visitor {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.link {
+  display: block;
+  margin-top: 8px;
+  text-align: center; 
+  color: #3f51b5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

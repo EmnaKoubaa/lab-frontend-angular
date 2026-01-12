@@ -1,0 +1,136 @@
+<div class="page-header">
+  <h2 class="page-title">Membres</h2>
+  <button
+    mat-raised-button
+    color="primary"
+    class="create-btn"
+    routerLink="/create">
+    <mat-icon>add</mat-icon>
+    Créer
+  </button>
+</div>
+
+<mat-form-field class="filter-field" appearance="outline">
+  <mat-label>Filtrer</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Rechercher un membre"
+    #input />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="table-wrapper mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- CIN Column -->
+    <ng-container matColumnDef="cin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CIN</th>
+      <td mat-cell *matCellDef="let element">{{ element.cin }}</td>
+    </ng-container>
+
+    <!-- Name Column (display nom + prenom) -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.nom }} {{ element.prenom }}</td>
+    </ng-container>
+
+    <!-- Date de naissance Column -->
+    <ng-container matColumnDef="dateNaissance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de naissance</th>
+      <td mat-cell *matCellDef="let element">{{ element.dateNaissance }}</td>
+    </ng-container>
+
+    <!-- Photo Column -->
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Photo</th>
+      <td mat-cell *matCellDef="let element"><img [src]="element.photo" alt="Photo" class="photo-cell" /></td>
+    </ng-container>
+
+    <!-- CV Column -->
+    <ng-container matColumnDef="cv">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CV</th>
+      <td mat-cell *matCellDef="let element"><a [href]="element.cv" target="_blank">Voir CV</a></td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <!-- Password Column -->
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mot de passe</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.showPassword ? element.password : '••••••••' }}
+          <button mat-icon-button (click)="togglePassword(element)" type="button">
+            <mat-icon>{{ element.showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </td>
+    </ng-container>
+
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
+
+    <!-- Created Date Column -->
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de création</th>
+      <td mat-cell *matCellDef="let element">{{ element.createdDate }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element" class="actions-cell">
+        <button
+          mat-icon-button
+          color="primary"
+          class="action-btn"
+          [routerLink]="['/', element.id, 'edit']"
+          matTooltip="Modifier">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          class="action-btn"
+          (click)="openDetails(element.id.toString())"
+          matTooltip="Voir">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          class="action-btn"
+          (click)="delete(element.id.toString())"
+          matTooltip="Supprimer">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell no-data" colspan="6">
+        Aucun résultat pour « {{ input.value }} »
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Pagination membres">
+  </mat-paginator>
+</div>

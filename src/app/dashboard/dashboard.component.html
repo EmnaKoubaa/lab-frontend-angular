@@ -1,0 +1,66 @@
+<div class="home-container">
+  <!-- Présentation du laboratoire -->
+  <section class="lab-intro mat-elevation-z2">
+    <h2>Bienvenue au {{ labName }}</h2>
+    <div class="lab-info">
+      <div class="lab-info-col">
+        <p><strong>Code :</strong> {{ labCode }}</p>
+        <p><strong>Nom :</strong> {{ labName }}</p>
+        <p><strong>Adresse :</strong> {{ labAddress }}</p>
+        <p><strong>Établissement :</strong> {{ labEtablissement }}</p>
+      </div>
+      <div class="lab-info-col">
+        <p><strong>Axes de recherche :</strong></p>
+        <ul>
+          <li *ngFor="let axe of labAxes">{{ axe }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistiques principales -->
+  <section class="stats-section">
+    <div class="stat-card mat-elevation-z2" routerLink="/member">
+      <h3>Membres</h3>
+      <p class="stat-value">{{ nbMembres }}</p>
+    </div>
+
+    <div class="stat-card mat-elevation-z2" routerLink="/articles">
+      <h3>Publications</h3>
+      <p class="stat-value">{{ nbPublications }}</p>
+    </div>
+
+    <div class="stat-card mat-elevation-z2" routerLink="/tools">
+      <h3>Outils</h3>
+      <p class="stat-value">{{ nbOutils }}</p>
+    </div>
+
+    <div class="stat-card mat-elevation-z2" routerLink="/events">
+      <h3>Événements</h3>
+      <p class="stat-value">{{ nbEvenements }}</p>
+    </div>
+  </section>
+
+  <!-- Charts -->
+  <section class="charts-section mat-elevation-z2">
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [type]="'line'"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+      >
+      </canvas>
+    </div>
+
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [type]="'pie'"
+        [datasets]="chartData1"
+        [labels]="chartLabels1"
+        [options]="chartOptions"
+      >
+      </canvas>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,308 @@
+/* ===== CONTENEUR PRINCIPAL DU DIALOG ===== */
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ===== HEADER DU DIALOG ===== */
+.dialog-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dialog-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
+}
+
+/* ===== CONTENU DU DIALOG ===== */
+.dialog-content {
+  padding: 32px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.event-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== CHAMPS DE FORMULAIRE ===== */
+.form-field {
+  width: 100%;
+  font-size: 15px;
+}
+
+::ng-deep .dialog-container .form-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+::ng-deep .dialog-container .form-field .mat-form-field-outline {
+  color: #d1d5db;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .dialog-container .form-field:hover .mat-form-field-outline {
+  color: #9ca3af;
+}
+
+::ng-deep .dialog-container .form-field.mat-focused .mat-form-field-outline {
+  color: #1e3a8a !important;
+}
+
+::ng-deep .dialog-container .form-field .mat-form-field-label {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+::ng-deep .dialog-container .form-field.mat-focused .mat-form-field-label {
+  color: #1e3a8a !important;
+}
+
+::ng-deep .dialog-container .form-field input {
+  font-size: 15px;
+  color: #1f2937;
+  padding: 12px 0;
+}
+
+/* Icônes préfixes */
+::ng-deep .dialog-container .form-field .mat-icon {
+  color: #6b7280;
+  margin-right: 12px;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+::ng-deep .dialog-container .form-field.mat-focused .mat-icon {
+  color: #1e3a8a;
+}
+
+/* ===== CHAMP DATE RANGE SPÉCIFIQUE ===== */
+.date-range-field {
+  position: relative;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-form-field-infix {
+  display: flex;
+  align-items: center;
+  padding: 16px 0 !important;
+  width: 100%;
+  min-height: 56px;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-date-range-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-date-range-input-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-date-range-input-start-wrapper,
+::ng-deep .dialog-container .date-range-field .mat-date-range-input-end-wrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
+::ng-deep .dialog-container .date-range-field input.mat-start-date,
+::ng-deep .dialog-container .date-range-field input.mat-end-date {
+  width: 100% !important;
+  min-width: 120px !important;
+  font-size: 15px !important;
+  color: #1f2937 !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-date-range-input-separator {
+  color: #6b7280;
+  margin: 0 4px;
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-datepicker-toggle {
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+::ng-deep .dialog-container .date-range-field.mat-focused .mat-datepicker-toggle {
+  color: #1e3a8a;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-form-field-hint {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+::ng-deep .dialog-container .date-range-field .mat-form-field-suffix {
+  display: flex;
+  align-items: center;
+}
+
+/* ===== ACTIONS DU DIALOG ===== */
+.dialog-actions {
+  padding: 24px 32px !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 16px !important;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.cancel-btn,
+.submit-btn {
+  cursor: pointer;
+  padding: 12px 28px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.cancel-btn {
+  background-color: #f3f4f6 !important;
+  color: #6b7280 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+.cancel-btn:hover {
+  background-color: #e5e7eb !important;
+  color: #374151 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.submit-btn {
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25) !important;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.35) !important;
+}
+
+.cancel-btn mat-icon,
+.submit-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+}
+
+/* ===== EFFET FOCUS SUR FORMULAIRE ===== */
+::ng-deep .dialog-container .form-field.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #1e3a8a !important;
+  border-width: 2px !important;
+}
+
+::ng-deep .dialog-container .form-field.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  transition: all 0.3s ease;
+}
+
+/* ===== ANIMATION D'ENTRÉE ===== */
+.dialog-container {
+  animation: dialogSlideIn 0.3s ease-out;
+}
+
+@keyframes dialogSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .dialog-container {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .dialog-header {
+    padding: 20px 24px;
+  }
+
+  .dialog-title {
+    font-size: 20px;
+  }
+
+  .dialog-content {
+    padding: 24px !important;
+  }
+
+  .event-form {
+    gap: 16px;
+  }
+
+  .dialog-actions {
+    padding: 20px 24px !important;
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* ===== CURSEUR POINTER ===== */
+.cancel-btn:hover,
+.submit-btn:hover {
+  cursor: pointer !important;
+}
+
+/* ===== OVERLAY DU DIALOG (optionnel) ===== */
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}

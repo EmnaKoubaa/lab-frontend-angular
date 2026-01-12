@@ -1,0 +1,148 @@
+{
+  "members": [
+    {
+      "id": "12345",
+      "cin": "1234",
+      "nom": "Koubaa",
+      "prenom": "Emna",
+      "dateNaissance": "16/09/2025",
+      "photo": "https://example.com/photo.jpg",
+      "cv": "https://example.com/cv.pdf",
+      "email": "emna.koubaa@example.com",
+      "password": "password123",
+      "type": "Student",
+      "createdDate": "16/09/2025"
+    },
+    {
+      "id": "23456",
+      "cin": "2345",
+      "nom": "Imene Lahyeni",
+      "prenom": "Imene",
+      "dateNaissance": "16/09/2025",
+      "photo": "https://example.com/photo.jpg",
+      "cv": "https://example.com/cv.pdf",
+      "email": "emna.koubaa@example.com",
+      "password": "password123",
+      "type": "Teacher",
+      "createdDate": "16/09/2025"
+    },
+    {
+      "id": "34567",
+      "cin": "3456",
+      "nom": "Chaima Ksibi",
+      "prenom": "Chaima",
+      "dateNaissance": "16/09/2025",
+      "photo": "https://example.com/photo.jpg",
+      "cv": "https://example.com/cv.pdf",
+      "email": "emna.koubaa@example.com",
+      "password": "password123",
+      "type": "Student",
+      "createdDate": "16/09/2025"
+    },
+    {
+      "id": "9341",
+      "cin": "4566",
+      "nom": "Chebil",
+      "prenom": "Fatma",
+      "dateNaissance": "16/09/2025",
+      "photo": "https://example.com/photo.jpg",
+      "cv": "https://example.com/cv.pdf",
+      "email": "emna.koubaa@example.com",
+      "password": "password123",
+      "type": "Student",
+      "createdDate": "2/10/2025"
+    },
+    {
+      "cin": "11112",
+      "nom": "Montahaa Ammar",
+      "prenom": "Montahaa",
+      "dateNaissance": "16/09/2025",
+      "photo": "https://example.com/photo.jpg",
+      "cv": "https://example.com/cv.pdf",
+      "email": "emna.koubaa@example.com",
+      "password": "password123",
+      "type": "Student",
+      "createdDate": "2025-12-22T21:28:48.558Z",
+      "id": "4084"
+    }
+  ],
+  "article": [
+    {
+      "type": "book",
+      "titre": "Learn JavaScript",
+      "lien": "https://www.w3schools.com/Js/",
+      "sourcePdf": "dx",
+      "date": "23/12/2025",
+      "id": "123"
+    },
+    {
+      "id": "1787",
+      "type": "livre",
+      "titre": "Angular",
+      "lien": "https://www.w3schools.com/Js/",
+      "sourcePdf": "test",
+      "date": "23/12/2025"
+    }
+  ],
+  "outil": [
+    {
+      "source": "test2",
+      "date": "23/12/2025",
+      "id": "12"
+    },
+    {
+      "source": "tfyh55",
+      "date": "23/12/2025",
+      "id": "3331"
+    },
+    {
+      "id": "a285",
+      "source": null,
+      "date": "23/12/2025"
+    }
+  ],
+  "event": [
+    {
+      "titre": "fdh",
+      "dateDeb": "11/12/2025",
+      "dateFin": "18/12/2025",
+      "lieu": "gh",
+      "id": "111"
+    },
+    {
+      "titre": "gg",
+      "dateDeb": "2025-12-15T23:00:00.000Z",
+      "dateFin": "2025-12-23T23:00:00.000Z",
+      "lieu": "ghhk",
+      "id": "28a8"
+    },
+    {
+      "titre": "gffg",
+      "dateDeb": "11/12/2025",
+      "dateFin": "19/12/2025",
+      "lieu": "gffffffffds",
+      "id": "d8cc"
+    },
+    {
+      "titre": "ggh",
+      "dateDeb": "2025-12-08T23:00:00.000Z",
+      "dateFin": "2025-12-15T23:00:00.000Z",
+      "lieu": "gg",
+      "id": "d6b1"
+    },
+    {
+      "id": "e5cf",
+      "titre": "test",
+      "dateDeb": "2025-11-30T23:00:00.000Z",
+      "dateFin": "2025-12-22T23:00:00.000Z",
+      "lieu": "test"
+    },
+    {
+      "id": "14c8",
+      "titre": "ngh",
+      "dateDeb": "02/12/2025",
+      "dateFin": "17/12/2025",
+      "lieu": "vcb"
+    }
+  ]
+}
